@@ -6,22 +6,28 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Got the SQLiteAssetHelper to work. Have included a populated database as well, but for now
+ * it's just random strings. At least we can deploy the app with our own database. Used SQLiteStudio
+ * to edit the database.
+ *
  * This retreives the ExcusesList and can add and delete single excuses. It can also retreive
  * certain excuses, but there are no complicated search functions. Thought we might just do that
  * in the ArrayList instead.
  *
  *
- * Created by Øyvind on 14.05.2015.
+ * Created by Oeyvind on 14.05.2015.
  */
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class DatabaseHandler extends SQLiteAssetHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "excusesManager";
+    private static final String DATABASE_NAME = "excuses";
 
     private static final String TABLE_EXCUSES = "excuses",
     KEY_ID = "id",
@@ -31,11 +37,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_EXCUSES + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_EXCUSE + " TEXT," + KEY_AGERANGE + " TEXT)");
     }
 
     @Override
@@ -58,11 +59,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Excuse getExcuse(int id){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID, KEY_EXCUSE, KEY_AGERANGE }, KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID, KEY_EXCUSE, KEY_AGERANGE },
+                KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2));
+        Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+                cursor.getString(2));
         db.close();
         cursor.close();
         return excuse;
@@ -91,7 +94,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_EXCUSE, excuse.getExcuse());
         values.put(KEY_AGERANGE, excuse.getAgeRange());
 
-        int returnVariable = db.update(TABLE_EXCUSES, values, KEY_ID + "=?", new String[]{String.valueOf(excuse.getId())});
+        int returnVariable = db.update(TABLE_EXCUSES, values, KEY_ID + "=?",
+                new String[]{String.valueOf(excuse.getId())});
         db.close();
         return returnVariable;
     }
@@ -104,7 +108,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2));
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2));
                 excuseList.add(excuse);
             }
             while (cursor.moveToNext());

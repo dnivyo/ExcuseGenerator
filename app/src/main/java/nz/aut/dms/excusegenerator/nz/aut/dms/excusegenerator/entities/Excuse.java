@@ -4,8 +4,14 @@ package nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities;
  * We need to add variables to this. Just an example, but the functionality should be there.
  * Haven't tested it though.
  *
+ * How about
+ * String excuse
+ * char sex
+ * int minAge
+ * int maxAge
+ * String usedOn
  *
- * Created by Øyvind on 14.05.2015.
+ * Created by Oeyvind on 14.05.2015.
  */
 public class Excuse {
 

@@ -4,9 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
-import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
 //The development team consists of:
 //Oeyvind,
@@ -22,6 +22,10 @@ public class MainActivity extends ActionBarActivity {
         dbHandler = new DatabaseHandler(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        int dbCount = dbHandler.getExcuseCount();
+        TextView dbCountV = (TextView) findViewById(R.id.textView);
+        dbCountV.setText("Db: " + dbCount);
+
     }
 
     @Override
@@ -46,8 +50,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addExcuse(){
-        Excuse excuse = new Excuse(dbHandler.getExcuseCount(), "I wish I could, but I don't want to.", "0-99");
-        dbHandler.createExcuse(excuse);
-    }
 }
