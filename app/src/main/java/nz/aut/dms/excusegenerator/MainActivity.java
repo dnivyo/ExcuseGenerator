@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 //The development team consists of:
-//�yvind,
+//Oeyvind,
 //Ingvild
 //
 //

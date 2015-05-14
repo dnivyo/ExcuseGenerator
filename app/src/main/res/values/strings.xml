@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ExcuseGenerator</string>
 
-    <string name="hello_world">Hello world!TEST FAEN JEG HATER DETTE</string>
+    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 </resources>
