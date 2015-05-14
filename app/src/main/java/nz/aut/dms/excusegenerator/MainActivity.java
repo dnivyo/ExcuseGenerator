@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
+import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
+
 //The development team consists of:
 //Oeyvind,
 //Ingvild
@@ -12,8 +15,11 @@ import android.view.MenuItem;
 //
 public class MainActivity extends ActionBarActivity {
 
+    DatabaseHandler dbHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dbHandler = new DatabaseHandler(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
@@ -38,5 +44,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addExcuse(){
+        Excuse excuse = new Excuse(dbHandler.getExcuseCount(), "I wish I could, but I don't want to.", "0-99");
+        dbHandler.createExcuse(excuse);
     }
 }
