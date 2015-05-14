@@ -6,8 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 //The development team consists of:
-//Øyvind,
-//
+//ï¿½yvind,
+//Ingvild
 //
 //
 public class MainActivity extends ActionBarActivity {
