@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -13,12 +12,12 @@ import java.util.List;
 
 /**
  * Got the SQLiteAssetHelper to work. Have included a populated database as well, but for now
- * it's just random strings. At least we can deploy the app with our own database. Used SQLiteStudio
+ * it's just one excuse. At least we can deploy the app with our own database. Used SQLiteStudio
  * to edit the database.
  *
  * This retreives the ExcusesList and can add and delete single excuses. It can also retreive
  * certain excuses, but there are no complicated search functions. Thought we might just do that
- * in the ArrayList instead.
+ * in the ArrayList that we get from the db instead.
  *
  *
  * Created by Oeyvind on 14.05.2015.
@@ -29,10 +28,14 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "excuses";
 
-    private static final String TABLE_EXCUSES = "excuses",
-    KEY_ID = "id",
-    KEY_EXCUSE = "excuse",
-    KEY_AGERANGE = "agerange";
+    private static final String TABLE_EXCUSES = "excuses";
+    private static final String KEY_ID = "_id";
+    private static final String KEY_EXCUSE = "_excuse";
+    private static final String KEY_SEX = "_sex";
+    private static final String KEY_MIN_AGE = "_minage";
+    private static final String KEY_MAX_AGE = "_maxage";
+    private static final String KEY_USED_ON = "_usedOn";
+
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,7 +54,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         ContentValues values = new ContentValues();
 
         values.put(KEY_EXCUSE, excuse.getExcuse());
-        values.put(KEY_AGERANGE, excuse.getAgeRange());
+        values.put(KEY_USED_ON, excuse.getUsedOn());
 
         db.insert(TABLE_EXCUSES, null, values);
         db.close();
@@ -59,13 +62,14 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
     public Excuse getExcuse(int id){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID, KEY_EXCUSE, KEY_AGERANGE },
+        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID,KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},
                 KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                cursor.getString(2));
+                cursor.getString(2).charAt(0), Integer.parseInt(cursor.getString(3)),
+                Integer.parseInt((cursor.getString(4))), cursor.getString(5));
         db.close();
         cursor.close();
         return excuse;
@@ -92,7 +96,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, excuse.getId());
         values.put(KEY_EXCUSE, excuse.getExcuse());
-        values.put(KEY_AGERANGE, excuse.getAgeRange());
+        values.put(KEY_USED_ON, excuse.getUsedOn());
 
         int returnVariable = db.update(TABLE_EXCUSES, values, KEY_ID + "=?",
                 new String[]{String.valueOf(excuse.getId())});
@@ -108,8 +112,9 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
-                        cursor.getString(1), cursor.getString(2));
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
+                        cursor.getString(2).charAt(0), Integer.parseInt(cursor.getString(3)),
+                        Integer.parseInt((cursor.getString(4))), cursor.getString(5));
                 excuseList.add(excuse);
             }
             while (cursor.moveToNext());

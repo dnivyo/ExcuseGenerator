@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
+import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
 //The development team consists of:
 //Oeyvind,
@@ -25,6 +26,11 @@ public class MainActivity extends ActionBarActivity {
         int dbCount = dbHandler.getExcuseCount();
         TextView dbCountV = (TextView) findViewById(R.id.textView);
         dbCountV.setText("Db: " + dbCount);
+        Excuse newExcuse = dbHandler.getExcuse(1);
+        TextView excuseV = (TextView) findViewById(R.id.textView2);
+        excuseV.setText("Excuse: " + newExcuse.getExcuse() + " MinAge:" + newExcuse.getMinAge()
+                + " MaxAge: " + newExcuse.getMaxAge() + " Sex: " + newExcuse.getSex()
+                + " Used on: " + newExcuse.getUsedOn());
 
     }
 
