@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
@@ -54,6 +55,23 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Will send you to the excuseView.
+    public void onRandomExcuseClick(View view) {
+
+    }
+    
+    public void onLoginClick(View view) {
+
+    }
+
+    public void onRegisterClick(View view) {
+
+    }
+
+    public void onAboutClick(View view) {
+
     }
 
 }

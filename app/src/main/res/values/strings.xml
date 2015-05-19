@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_excuse_output">ExcuseOutputActivity</string>
+    <string name="title_activity_main_loggedin">MainLoggedinActivity</string>
+    <string name="title_activity_tailor_excuse">TailorExcuseActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_excuse_log">ExcuseLogActivity</string>
 </resources>
