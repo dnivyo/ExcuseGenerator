@@ -1,12 +1,22 @@
 package nz.aut.dms.excusegenerator;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Switch;
 
 
-public class RegisterActivity extends ActionBarActivity {
+public class RegisterActivity extends Activity {
+
+    private String username;
+    private char sex;
+    private int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +44,35 @@ public class RegisterActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Getting input. Saving it in the preference file, stores it in the intent and
+     * forwards the user to the MainLoggedinActivity.
+     * @param view
+     */
+    public void onRegisterButtonClick(View view) {
+        Intent intent = new Intent(this, MainLoggedinActivity.class);
+
+        EditText usernameView = (EditText) findViewById(R.id.usernameRegister);
+        Switch sexView = (Switch) findViewById(R.id.sexRegister);
+        EditText ageView = (EditText) findViewById(R.id.ageRegister);
+
+        username = usernameView.getText().toString();
+        sex = sexView.getText().charAt(0); //not 100% sure if this will work
+        age = Integer.parseInt(ageView.getText().toString());
+
+        intent.putExtra(MainActivity.USERNAME, username);
+        intent.putExtra(MainActivity.SEX, sex);
+        intent.putExtra(MainActivity.AGE, age);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.prefs_file_saved_username), username);
+        editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
+        editor.putInt(getString(R.string.prefs_file_saved_age), age);
+        editor.commit();
+
+        startActivity(intent);
     }
 }

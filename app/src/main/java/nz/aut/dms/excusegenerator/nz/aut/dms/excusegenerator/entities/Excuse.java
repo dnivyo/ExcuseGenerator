@@ -19,14 +19,18 @@ package nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities;
 public class Excuse {
 
     private int id;
+    private String person;
+    private char quality;
     private String excuse;
     private char sex;
     private int minAge;
     private int maxAge;
     private String usedOn;
 
-    public Excuse(int id, String excuse, char sex, int minAge, int maxAge, String usedOn) {
+    public Excuse(int id, String person, char quality, String excuse, char sex, int minAge, int maxAge, String usedOn) {
         this.id = id;
+        this.person = person;
+        this.quality = quality;
         this.excuse = excuse;
         this.sex = sex;
         this.minAge = minAge;
@@ -78,6 +82,21 @@ public class Excuse {
         this.usedOn = usedOn;
     }
 
+    public String getPerson() {
+        return person;
+    }
+
+    public void setPerson(String person) {
+        this.person = person;
+    }
+
+    public char getQuality() {
+        return quality;
+    }
+
+    public void setQuality(char quality) {
+        this.quality = quality;
+    }
 
 
 }

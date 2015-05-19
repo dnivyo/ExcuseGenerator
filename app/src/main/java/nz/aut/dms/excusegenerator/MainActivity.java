@@ -1,6 +1,9 @@
 package nz.aut.dms.excusegenerator;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +18,15 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 //Ingvild
 //
 //
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+    public final static String USERNAME = "nz.aut.dms.excusegenerator.USERNAME";
+    public final static String SEX = "nz.aut.dms.excusegenerator.SEX";
+    public final static String AGE = "nz.aut.dms.excusegenerator.AGE";
+    public final static String PREFS_FILE = "PREFS_FILE";
+
+    private String username;
+    private char sex;
+    private int age;
 
     DatabaseHandler dbHandler;
 
@@ -56,18 +67,48 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    /**
+     * Loading saved userinformation from file.
+     * If userinformation is unavailable, the Login-button should be un-clickable.
+     */
+    public void getPrefsOnStartu() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+        username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
+        sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "").charAt(0);
+        age = sharedPreferences.getInt(getString(R.string.prefs_file_saved_age), 0);
 
-    //Will send you to the excuseView.
-    public void onRandomExcuseClick(View view) {
+        if (username.equals("")) {
+            //Set loginbutton clickable to false.
+        }
+    }
+
+    /**
+     * Will send the user to the excuseView.
+     * @param view
+     */
+    public void onMainRandomExcuseClick(View view) {
 
     }
-    
-    public void onLoginClick(View view) {
 
+    /**
+     * Will forward the user to the MainLoggedinActivity.
+     * @param view
+     */
+    public void onMainLoginClick(View view) {
+        Intent intent = new Intent(this, MainLoggedinActivity.class);
+        intent.putExtra(USERNAME, username);
+        intent.putExtra(SEX, sex);
+        intent.putExtra(AGE, age);
+        startActivity(intent);
     }
 
-    public void onRegisterClick(View view) {
-
+    /**
+     * Will forward the user to the RegisterActivity.
+     * @param view
+     */
+    public void onMainRegisterClick(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void onAboutClick(View view) {

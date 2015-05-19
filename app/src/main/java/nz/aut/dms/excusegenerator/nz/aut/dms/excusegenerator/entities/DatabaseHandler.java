@@ -30,6 +30,8 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
     private static final String TABLE_EXCUSES = "excuses";
     private static final String KEY_ID = "_id";
+    private static final String KEY_PERSON = "_person";
+    private static final String KEY_QUALITY = "_quality";
     private static final String KEY_EXCUSE = "_excuse";
     private static final String KEY_SEX = "_sex";
     private static final String KEY_MIN_AGE = "_minage";
@@ -62,14 +64,15 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
     public Excuse getExcuse(int id){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID,KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},
+        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID, KEY_PERSON, KEY_QUALITY,KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},
                 KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                cursor.getString(2).charAt(0), Integer.parseInt(cursor.getString(3)),
-                Integer.parseInt((cursor.getString(4))), cursor.getString(5));
+                cursor.getString(2).charAt(0), cursor.getString(3),
+                cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                Integer.parseInt((cursor.getString(6))), cursor.getString(7));
         db.close();
         cursor.close();
         return excuse;
@@ -95,7 +98,12 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_ID, excuse.getId());
+        values.put(KEY_PERSON, excuse.getPerson());
+        values.put(KEY_QUALITY, String.valueOf(excuse.getQuality()));
         values.put(KEY_EXCUSE, excuse.getExcuse());
+        values.put(KEY_SEX, String.valueOf(excuse.getSex()));
+        values.put(KEY_MIN_AGE, String.valueOf(excuse.getMinAge()));
+        values.put(KEY_MAX_AGE, String.valueOf(excuse.getMaxAge()));
         values.put(KEY_USED_ON, excuse.getUsedOn());
 
         int returnVariable = db.update(TABLE_EXCUSES, values, KEY_ID + "=?",
@@ -112,9 +120,10 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-                        cursor.getString(2).charAt(0), Integer.parseInt(cursor.getString(3)),
-                        Integer.parseInt((cursor.getString(4))), cursor.getString(5));
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
                 excuseList.add(excuse);
             }
             while (cursor.moveToNext());

@@ -10,4 +10,8 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="title_activity_excuse_log">ExcuseLogActivity</string>
+
+    <string name="prefs_file_saved_username">saved_username</string>
+    <string name="prefs_file_saved_sex">saved_sex</string>
+    <string name="prefs_file_saved_age">saved_age</string>
 </resources>
