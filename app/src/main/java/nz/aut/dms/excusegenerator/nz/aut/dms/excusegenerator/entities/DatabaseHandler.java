@@ -78,6 +78,8 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         return excuse;
     }
 
+
+
     public void deleteExcuse(Excuse excuse){
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_EXCUSES, KEY_ID + "=?", new String[] { String.valueOf(excuse.getId()) });

@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Random;
+
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
@@ -23,6 +25,7 @@ public class MainActivity extends Activity {
     public final static String SEX = "nz.aut.dms.excusegenerator.SEX";
     public final static String AGE = "nz.aut.dms.excusegenerator.AGE";
     public final static String PREFS_FILE = "PREFS_FILE";
+    public static final String EXTRA_MESSAGE ="";
 
     private String username;
     private char sex;
@@ -45,7 +48,17 @@ public class MainActivity extends Activity {
                 + " Used on: " + newExcuse.getUsedOn());
 
     }
-
+    public void randomExcuseIntent(View view){
+        Intent intent = new Intent(this, ExcuseOutputActivity.class);
+        int min =1;
+        int dbCount = dbHandler.getExcuseCount();
+       Random random =new Random();
+        int randomInt = random.nextInt(dbCount)+min;
+                Excuse newExcuse = dbHandler.getExcuse(randomInt);
+        String message=(newExcuse.getExcuse());
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
