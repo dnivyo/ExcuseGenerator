@@ -50,11 +50,11 @@ public class MainActivity extends Activity {
     }
     public void randomExcuseIntent(View view){
         Intent intent = new Intent(this, ExcuseOutputActivity.class);
-        int min =1;
-        int dbCount = dbHandler.getExcuseCount();
-       Random random =new Random();
-        int randomInt = random.nextInt(dbCount)+min;
-                Excuse newExcuse = dbHandler.getExcuse(randomInt);
+        //int min =1;
+      //  int dbCount = dbHandler.getExcuseCount();
+      // Random random =new Random();
+       // int randomInt = random.nextInt(dbCount)+min;
+                Excuse newExcuse = dbHandler.getExcuse(1);
         String message=(newExcuse.getExcuse());
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
