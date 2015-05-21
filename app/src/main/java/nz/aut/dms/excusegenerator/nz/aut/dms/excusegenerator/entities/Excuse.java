@@ -5,7 +5,7 @@ package nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities;
  *
  * How about
  * String excuse - The excuse
- * char sex - Excuse most probably used by femal/male/both
+ * char sex - Excuse most probably used by female/male/both
  * int minAge - Minimum age for who would probably use this excuse
  * int maxAge - Maximum age for who would probably use this excuse
  * String usedOn - Who this excuse could be used on (E.g: Teacher, Employer, Friend, Lover....?)
