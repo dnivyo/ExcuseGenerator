@@ -18,58 +18,89 @@
         android:layout_marginTop="66dp"
         android:id="@+id/linearLayout">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Share"
-            android:id="@+id/btnShare"
-            android:layout_marginTop="46dp"
-            android:layout_below="@+id/outPutText"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="shareIt"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/frameLayout"
+            android:layout_alignRight="@+id/linearLayout"
+            android:layout_alignEnd="@+id/linearLayout"
+            android:layout_weight="0.71">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1.46"
-        android:layout_alignParentTop="true"
-        android:id="@+id/frameLayout"
-        android:layout_alignRight="@+id/linearLayout"
-        android:layout_alignEnd="@+id/linearLayout">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageView2"
+                android:layout_gravity="right|bottom"
+                android:src="@mipmap/last" />
 
-        <ImageView
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:id="@+id/imageView"
-            android:layout_gravity="left|top"
-            android:src="@mipmap/first" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:id="@+id/outPutText"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:fontFamily="sans-serif-light"
+                android:textSize="21sp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal|top"
+                android:textIsSelectable="false"
+                android:theme="@style/AlertDialog.AppCompat.Light"
+                android:visibility="visible" />
 
-        <ImageView
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:id="@+id/imageView2"
-            android:layout_gravity="right|bottom"
-            android:src="@mipmap/last" />
+        </FrameLayout>
 
-        <EditText
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/outPutText"
-            android:layout_below="@+id/textView3"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:fontFamily="sans-serif-light"
-            android:textSize="50sp"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.50">
 
-    </FrameLayout>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:layout_gravity="left|center_vertical"
+                android:src="@mipmap/f"
+                android:background="@null"
+                android:adjustViewBounds="true"
+                android:clickable="true" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton2"
+                android:layout_gravity="center"
+                android:src="@mipmap/t"
+                android:background="@null"
+                android:adjustViewBounds="true"
+                android:clickable="true" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton3"
+                android:layout_gravity="right|center_vertical"
+                android:src="@mipmap/s"
+                android:background="@null"
+                android:adjustViewBounds="true"
+                android:clickable="true" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="71dp"
+        android:layout_height="47dp"
+        android:id="@+id/imageView"
+        android:src="@mipmap/first"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp" />
 
 </RelativeLayout>
