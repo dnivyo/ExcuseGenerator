@@ -68,7 +68,9 @@
                 android:src="@mipmap/f"
                 android:background="@null"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:onClick="soundPlay"
+            />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -78,7 +80,9 @@
                 android:src="@mipmap/t"
                 android:background="@null"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:onClick="soundPlay"
+            />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -88,7 +92,9 @@
                 android:src="@mipmap/s"
                 android:background="@null"
                 android:adjustViewBounds="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:onClick="shareIt"
+              />
         </FrameLayout>
 
     </LinearLayout>
