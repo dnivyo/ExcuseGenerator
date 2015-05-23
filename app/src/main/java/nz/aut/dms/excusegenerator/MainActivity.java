@@ -32,6 +32,8 @@ public class MainActivity extends Activity {
     private char sex;
     private int age;
 
+
+
     DatabaseHandler dbHandler;
 
     @Override
@@ -50,6 +52,8 @@ public class MainActivity extends Activity {
 
     }
     public void randomExcuseIntent(View view){
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
+        mp.start();
         Intent intent = new Intent(this, ExcuseOutputActivity.class);
         int min =1;
         int dbCount = dbHandler.getExcuseCount();
@@ -59,6 +63,7 @@ public class MainActivity extends Activity {
         String message=(newExcuse.getExcuse());
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,6 +85,14 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void soundPlay (View view) {
+
+
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
+        mp.start();
+
     }
     /**
      * Loading saved userinformation from file.

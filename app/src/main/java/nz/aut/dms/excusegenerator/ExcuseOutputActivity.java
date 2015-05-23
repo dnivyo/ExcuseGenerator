@@ -19,7 +19,7 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 public class ExcuseOutputActivity extends ActionBarActivity {
 
 
-//public MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.bute);
+//public MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,14 @@ public class ExcuseOutputActivity extends ActionBarActivity {
     public void soundPlay(View v) {
 
 
-        //mp.start();
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
+        mp.start();
 
     }
 
     public void shareIt(View view) {
-        //mp.start();
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
+        mp.start();
         Intent sharingIntent = new Intent();
         sharingIntent.setAction(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
@@ -49,6 +51,7 @@ public class ExcuseOutputActivity extends ActionBarActivity {
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        //mp.start();
 
     }
     @Override
