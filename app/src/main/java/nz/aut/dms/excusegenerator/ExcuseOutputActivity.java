@@ -19,8 +19,6 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 public class ExcuseOutputActivity extends ActionBarActivity {
 
 
-//public MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +27,14 @@ public class ExcuseOutputActivity extends ActionBarActivity {
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         EditText messageText = (EditText) findViewById(R.id.outPutText);
         messageText.setText(message);
+
+    }
+
+
+    public void musicStop(View v) {
+
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.concerto);
+        mp.stop();
 
     }
 

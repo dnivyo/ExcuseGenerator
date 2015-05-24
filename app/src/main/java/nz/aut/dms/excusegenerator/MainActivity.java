@@ -19,7 +19,7 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 //The development team consists of:
 //Oeyvind,
 //Ingvild
-//
+//David
 //
 public class MainActivity extends Activity {
     public final static String USERNAME = "nz.aut.dms.excusegenerator.USERNAME";
@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
         dbHandler = new DatabaseHandler(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //MediaPlayer mp = MediaPlayer.create(MainActivity.this,R.raw.concerto);
+        //mp.start();
         int dbCount = dbHandler.getExcuseCount();
         TextView dbCountV = (TextView) findViewById(R.id.textView);
         dbCountV.setText("Db: " + dbCount);
