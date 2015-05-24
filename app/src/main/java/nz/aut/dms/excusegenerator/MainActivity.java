@@ -28,9 +28,12 @@ public class MainActivity extends Activity {
     public final static String PREFS_FILE = "PREFS_FILE";
     public static final String EXTRA_MESSAGE ="";
 
+
     private String username;
     private char sex;
     private int age;
+
+
 
 
 
