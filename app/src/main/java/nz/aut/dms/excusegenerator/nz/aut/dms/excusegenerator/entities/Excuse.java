@@ -17,7 +17,7 @@ package nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities;
  * Created by Oeyvind on 14.05.2015.
  */
 public class Excuse {
-
+    //comment
     private int id;
     private String person;
     private char quality;
