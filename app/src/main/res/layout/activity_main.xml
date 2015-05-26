@@ -50,7 +50,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="89dp"
-            android:background="#ffaaa9fd">
+            android:background="#5ac8fa">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -82,7 +82,7 @@
                     android:id="@+id/imageButton12"
                     android:background="@null"
                     android:layout_weight="1"
-                    android:src="@mipmap/login"
+                    android:src="@mipmap/abouts"
                     android:layout_gravity="bottom" />
             </LinearLayout>
         </LinearLayout>
@@ -91,7 +91,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="63dp"
-            android:background="#ffaaa9fd"
+            android:background="#5ac8fa"
             android:gravity="center_vertical|center_horizontal">
 
             <TextView
@@ -110,13 +110,14 @@
                 android:text="PROFILE"
                 android:id="@+id/textView4"
                 android:layout_weight="1"
+                android:onClick="profileRegister"
                 android:gravity="center_vertical|center_horizontal|bottom"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="LOG IN"
+                android:text="ABOUT"
                 android:id="@+id/textView5"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal|bottom"
@@ -137,7 +138,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="144dp"
-            android:background="#fffd3922" >
+            android:background="#007aff" >
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -154,6 +155,16 @@
                     android:src="@mipmap/generate"
                     android:layout_gravity="bottom"
                     android:onClick="randomExcuseIntent"/>
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton22"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:src="@mipmap/don"
+                    android:layout_gravity="bottom"
+                    android:onClick="randomExcuseIntent"/>
+
 
             </LinearLayout>
         </LinearLayout>
@@ -162,7 +173,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fffd3922"
+            android:background="#007aff"
             android:gravity="center_vertical|center_horizontal"
             android:layout_weight="1.98">
 
@@ -175,6 +186,15 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal|bottom"
                 android:textColor="#FFFFFF" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="DONATE"
+                android:id="@+id/textView7"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal|bottom"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>
@@ -183,16 +203,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ff5de1fd"
+        android:background="#007aff"
         android:gravity="center_vertical|center_horizontal" >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ABOUT"
-            android:id="@+id/button"
-            android:background="@null"
-            android:textColor="#FFFFFF"/>
     </LinearLayout>
 
     <TextView
