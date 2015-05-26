@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@string/about_h"
             android:id="@+id/abouth"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -22,6 +22,7 @@
         <TextView
             android:layout_width="283dp"
             android:layout_height="234dp"
+            android:text="@string/information_p2"
             android:id="@+id/infop2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -33,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/information_p3"
         android:id="@+id/infop3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -43,7 +44,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/about_p1"
         android:id="@+id/aboutp1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -51,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/about_p2"
         android:id="@+id/aboutp2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -59,7 +60,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/information_h"
         android:id="@+id/infoh"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -67,7 +68,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/information_p1"
         android:id="@+id/infop1"
         android:onClick="abouth"
         android:layout_alignParentLeft="true"

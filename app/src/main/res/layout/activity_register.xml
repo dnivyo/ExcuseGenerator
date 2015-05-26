@@ -24,18 +24,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:hint="Age"
         android:ems="10"
         android:id="@+id/ageRegister"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <Switch
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Switch"
+        android:text="Sex"
         android:id="@+id/sexRegister"
-        android:layout_above="@+id/ageRegister"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="82dp"
+        android:checked="false"
+        android:textOff="Male"
+        android:textOn="Female" />
 
 
 </RelativeLayout>

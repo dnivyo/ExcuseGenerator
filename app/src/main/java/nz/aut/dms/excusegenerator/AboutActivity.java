@@ -12,14 +12,14 @@ import android.widget.TextView;
 public class AboutActivity extends ActionBarActivity {
 
 
-    String abouth = getResources().getString(R.string.about_h);
-    String aboutp1 = getResources().getString(R.string.about_p1);
-    String aboutp2 = getResources().getString(R.string.about_p2);
-
-    String infoh = getResources().getString(R.string.information_h);
-    String infop1 = getResources().getString(R.string.information_p1);
-    String infop2 = getResources().getString(R.string.information_p2);
-    String infop3 = getResources().getString(R.string.information_p3);
+//    String abouth = getResources().getString(R.string.about_h);
+//    String aboutp1 = getResources().getString(R.string.about_p1);
+//    String aboutp2 = getResources().getString(R.string.about_p2);
+//
+//    String infoh = getResources().getString(R.string.information_h);
+//    String infop1 = getResources().getString(R.string.information_p1);
+//    String infop2 = getResources().getString(R.string.information_p2);
+//    String infop3 = getResources().getString(R.string.information_p3);
     //public static final String EXTRA_MESSAGE ="";
 
 
@@ -32,10 +32,10 @@ public class AboutActivity extends ActionBarActivity {
         //String message = intent.getStringExtra(AboutActivity.EXTRA_MESSAGE);
 
 
-        TextView view1 = (TextView) findViewById(R.id.abouth);
-        view1.setText(abouth);
-        TextView view2 = (TextView) findViewById(R.id.aboutp1);
-        view1.setText(aboutp1);
+//        TextView view1 = (TextView) findViewById(R.id.abouth);
+//        view1.setText(abouth);
+//        TextView view2 = (TextView) findViewById(R.id.aboutp1);
+//        view1.setText(aboutp1);
     }
 
     @Override

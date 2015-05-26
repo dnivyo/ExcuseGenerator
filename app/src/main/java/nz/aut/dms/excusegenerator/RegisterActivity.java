@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.ToggleButton;
 
 
 public class RegisterActivity extends Activity {
@@ -18,23 +19,27 @@ public class RegisterActivity extends Activity {
     private char sex;
     private int age;
     EditText usernameView;
-    Switch sexView;
+    ToggleButton sexView;
     EditText ageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        EditText usernameView = (EditText) findViewById(R.id.usernameRegister);
-        Switch sexView = (Switch) findViewById(R.id.sexRegister);
-        EditText ageView = (EditText) findViewById(R.id.ageRegister);
+        usernameView = (EditText) findViewById(R.id.usernameRegister);
+        sexView = (ToggleButton) findViewById(R.id.sexRegister);
+        ageView = (EditText) findViewById(R.id.ageRegister);
         Intent intent = getIntent();
         username = intent.getStringExtra(MainActivity.USERNAME);
         sex = intent.getStringExtra(MainActivity.SEX).charAt(0);
         age = Integer.parseInt(intent.getStringExtra(MainActivity.AGE));
         if (!username.equals("")){
             usernameView.setText(username);
-            //sexView.setChecked();
+            if (sex  == 'f') {
+                sexView.setChecked(true);
+            } else {
+                sexView.setChecked(false);
+            }
             ageView.setText(age);
         }
     }
@@ -69,12 +74,16 @@ public class RegisterActivity extends Activity {
     public void onRegisterButtonClick(View view) {
         Intent intent = new Intent(this, TailorExcuseActivity.class);
 
-        EditText usernameView = (EditText) findViewById(R.id.usernameRegister);
-        Switch sexView = (Switch) findViewById(R.id.sexRegister);
-        EditText ageView = (EditText) findViewById(R.id.ageRegister);
+        usernameView = (EditText) findViewById(R.id.usernameRegister);
+        sexView = (ToggleButton) findViewById(R.id.sexRegister);
+        ageView = (EditText) findViewById(R.id.ageRegister);
 
         username = usernameView.getText().toString();
-        sex = sexView.getText().charAt(0); //not 100% sure if this will work
+        if (sexView.isChecked()) {
+            sex = 'f';
+        } else {
+            sex = 'm';
+        }
         age = Integer.parseInt(ageView.getText().toString());
 
         intent.putExtra(MainActivity.USERNAME, username);
