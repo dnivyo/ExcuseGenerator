@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
      */
     public void onAboutClick(View view) {
 
-        ImageButton T=(ImageButton)findViewById(R.id.imageButton12);
+        ImageButton T = (ImageButton) findViewById(R.id.imageButton12);
         T.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -147,6 +147,7 @@ public class MainActivity extends Activity {
                 startActivity(i);
             }
         });
+    }
 
 
     public void onTailorExcuse(View view) {
