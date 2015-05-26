@@ -17,11 +17,26 @@ public class RegisterActivity extends Activity {
     private String username;
     private char sex;
     private int age;
+    EditText usernameView;
+    Switch sexView;
+    EditText ageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        EditText usernameView = (EditText) findViewById(R.id.usernameRegister);
+        Switch sexView = (Switch) findViewById(R.id.sexRegister);
+        EditText ageView = (EditText) findViewById(R.id.ageRegister);
+        Intent intent = getIntent();
+        username = intent.getStringExtra(MainActivity.USERNAME);
+        sex = intent.getStringExtra(MainActivity.SEX).charAt(0);
+        age = Integer.parseInt(intent.getStringExtra(MainActivity.AGE));
+        if (!username.equals("")){
+            usernameView.setText(username);
+            //sexView.setChecked();
+            ageView.setText(age);
+        }
     }
 
     @Override
@@ -48,11 +63,11 @@ public class RegisterActivity extends Activity {
 
     /**
      * Getting input. Saving it in the preference file, stores it in the intent and
-     * forwards the user to the MainLoggedinActivity.
+     * forwards the user to the Tailor Excuse Activity
      * @param view
      */
     public void onRegisterButtonClick(View view) {
-        Intent intent = new Intent(this, MainLoggedinActivity.class);
+        Intent intent = new Intent(this, TailorExcuseActivity.class);
 
         EditText usernameView = (EditText) findViewById(R.id.usernameRegister);
         Switch sexView = (Switch) findViewById(R.id.sexRegister);

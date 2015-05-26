@@ -104,23 +104,8 @@ public class MainActivity extends Activity {
         username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
         sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "").charAt(0);
         age = sharedPreferences.getInt(getString(R.string.prefs_file_saved_age), 0);
-
-        if (username.equals("")) {
-            //Set loginbutton clickable to false.
-        }
     }
 
-    /**
-     * Will forward the user to the MainLoggedinActivity.
-     * @param view
-     */
-    public void onMainLoginClick(View view) {
-        Intent intent = new Intent(this, MainLoggedinActivity.class);
-        intent.putExtra(USERNAME, username);
-        intent.putExtra(SEX, sex);
-        intent.putExtra(AGE, age);
-        startActivity(intent);
-    }
 
     /**
      * Will forward the user to the RegisterActivity.
@@ -128,9 +113,18 @@ public class MainActivity extends Activity {
      */
     public void onMainRegisterClick(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
+
+        intent.putExtra(USERNAME, username);
+        intent.putExtra(AGE, age);
+        intent.putExtra(SEX, sex);
+
         startActivity(intent);
     }
 
+    /**
+     * Will forward the user to the AboutActivity.
+     * @param view
+     */
     public void onAboutClick(View view) {
 
     }
