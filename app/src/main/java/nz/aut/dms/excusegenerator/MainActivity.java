@@ -46,16 +46,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         //MediaPlayer mp = MediaPlayer.create(MainActivity.this,R.raw.concerto);
         //mp.start();
-        int dbCount = dbHandler.getExcuseCount();
-        TextView dbCountV = (TextView) findViewById(R.id.textView);
-        dbCountV.setText("Db: " + dbCount);
-        Excuse newExcuse = dbHandler.getExcuse(1);
-        TextView excuseV = (TextView) findViewById(R.id.textView2);
-        excuseV.setText("Excuse: " + newExcuse.getExcuse() + " MinAge:" + newExcuse.getMinAge()
-                + " MaxAge: " + newExcuse.getMaxAge() + " Sex: " + newExcuse.getSex()
-                + " Used on: " + newExcuse.getUsedOn());
-
     }
+
+    /**
+     * Will send the user to the excuseView.
+     * @param view
+     */
     public void randomExcuseIntent(View view){
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
@@ -122,14 +118,6 @@ public class MainActivity extends Activity {
         if (username.equals("")) {
             //Set loginbutton clickable to false.
         }
-    }
-
-    /**
-     * Will send the user to the excuseView.
-     * @param view
-     */
-    public void onMainRandomExcuseClick(View view) {
-
     }
 
     /**
