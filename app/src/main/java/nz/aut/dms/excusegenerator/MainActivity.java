@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -67,6 +69,7 @@ public class MainActivity extends Activity {
     public void profileRegister(View view){
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
+
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
@@ -133,9 +136,18 @@ public class MainActivity extends Activity {
      * @param view
      */
     public void onAboutClick(View view) {
-        Intent intent = new Intent(this, AboutActivity.class);
-        startActivity(intent);
-    }
+
+        ImageButton T=(ImageButton)findViewById(R.id.imageButton12);
+        T.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent i = new Intent(getApplicationContext(), AboutActivity.class);
+                startActivity(i);
+            }
+        });
+
 
     public void onTailorExcuse(View view) {
         if (!username.equals("")){

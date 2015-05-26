@@ -26,8 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="111dp"
                 android:id="@+id/imageButton9"
-                android:background="#ff000000"
-                android:src="@mipmap/doosi"
+                android:background="#ff3b30"
+                android:src="@mipmap/title"
                 android:adjustViewBounds="true" />
 
             <LinearLayout
@@ -83,6 +83,7 @@
                     android:background="@null"
                     android:layout_weight="1"
                     android:src="@mipmap/abouts"
+                    android:onClick="onAboutClick"
                     android:layout_gravity="bottom" />
             </LinearLayout>
         </LinearLayout>
@@ -110,10 +111,10 @@
                 android:text="PROFILE"
                 android:id="@+id/textView4"
                 android:layout_weight="1"
-                android:onClick="profileRegister"
+                android:onClick="onMainRegisterClick"
                 android:gravity="center_vertical|center_horizontal|bottom"
                 android:textColor="#FFFFFF"
-                android:onClick="onMainRegisterClick"
+
                 />
             <TextView
                 android:layout_width="fill_parent"
