@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
     public void getPrefsOnStartup() {
         SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
-        sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "").charAt(0);
+       // sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "").charAt(0);
         age = sharedPreferences.getInt(getString(R.string.prefs_file_saved_age), 0);
     }
 
@@ -151,15 +151,15 @@ public class MainActivity extends Activity {
 
 
     public void onTailorExcuse(View view) {
-        if (!username.equals("")){
+       // if (!username.equals("")){
             Intent intent = new Intent(this, TailorExcuseActivity.class);
-            intent.putExtra(USERNAME, username);
-            intent.putExtra(AGE, age);
-            intent.putExtra(SEX, sex);
+            //intent.putExtra(USERNAME, username);
+           // intent.putExtra(AGE, age);
+          //  intent.putExtra(SEX, sex);
             startActivity(intent);
-        } else {
-            this.onMainRegisterClick(view);
-        }
+      //  } else {
+       //     this.onMainRegisterClick(view);
+       // }
     }
 
 }

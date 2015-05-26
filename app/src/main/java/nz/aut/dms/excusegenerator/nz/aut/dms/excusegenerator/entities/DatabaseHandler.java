@@ -82,7 +82,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
     public void deleteExcuse(Excuse excuse){
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_EXCUSES, KEY_ID + "=?", new String[] { String.valueOf(excuse.getId()) });
+        db.delete(TABLE_EXCUSES, KEY_ID + "=?", new String[]{String.valueOf(excuse.getId())});
         db.close();
     }
 
@@ -134,5 +134,70 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         cursor.close();
         return excuseList;
     }
+    //seb
+   public ArrayList<String> getAllPersons() {
+       ArrayList<String> personList = new ArrayList<String>();
+       //List<Excuse> personList = new ArrayList<Excuse>();
+       SQLiteDatabase db = getWritableDatabase();
+       Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
+
+       if (cursor.moveToFirst()) {
+           do {
+               Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                       cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                       cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                       Integer.parseInt((cursor.getString(6))), cursor.getString(7));
+               personList.add(cursor.getString(1));
+           }
+           while (cursor.moveToNext());
+       }
+       db.close();
+       cursor.close();
+       return personList;
+   }
+       public ArrayList<String> getAllQuality() {
+           ArrayList<String> qualityList = new ArrayList<String>();
+           SQLiteDatabase db = getWritableDatabase();
+           Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
+
+           if (cursor.moveToFirst()) {
+               do {
+                   Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                           cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                           cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                           Integer.parseInt((cursor.getString(6))), cursor.getString(7));
+                   qualityList.add(cursor.getString(2));
+               }
+               while (cursor.moveToNext());
+           }
+           db.close();
+           cursor.close();
+           return qualityList;
+       }
+       public ArrayList<String> getAllVailedExcuses(String person,String quality) {
+        ArrayList<String> vailedExcusesList = new ArrayList<String>();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES+"WHERE "+ person+ "AND"+ quality, null);//fix Query
+
+        if (cursor.moveToFirst()) {
+            do {
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
+                if(cursor.getString(1) != cursor.getString(7)) {
+                    vailedExcusesList.add(cursor.getString(4));
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return vailedExcusesList;
+    }
+       //seb
+
+
+
 
 }
