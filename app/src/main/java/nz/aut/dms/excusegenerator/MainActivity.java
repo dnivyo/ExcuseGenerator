@@ -23,6 +23,8 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 //Ingvild
 //David
 //
+
+
 public class MainActivity extends Activity {
     public final static String USERNAME = "nz.aut.dms.excusegenerator.USERNAME";
     public final static String SEX = "nz.aut.dms.excusegenerator.SEX";
@@ -30,20 +32,16 @@ public class MainActivity extends Activity {
     public final static String PREFS_FILE = "PREFS_FILE";
     public static final String EXTRA_MESSAGE ="";
 
-
     private String username;
     private char sex;
     private int age;
-
-
-
-
 
     DatabaseHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dbHandler = new DatabaseHandler(getApplicationContext());
+        getPrefsOnStartup();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //MediaPlayer mp = MediaPlayer.create(MainActivity.this,R.raw.concerto);
@@ -60,13 +58,12 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, ExcuseOutputActivity.class);
         int min =1;
         int dbCount = dbHandler.getExcuseCount();
-       Random random =new Random();
+        Random random =new Random();
         int randomInt = random.nextInt(dbCount)+min;
                 Excuse newExcuse = dbHandler.getExcuse(randomInt);
         String message=(newExcuse.getExcuse());
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
-
     }
 
     public void profileRegister(View view){
@@ -107,11 +104,12 @@ public class MainActivity extends Activity {
         mp.start();
 
     }
+
     /**
      * Loading saved userinformation from file.
      * If userinformation is unavailable, the Login-button should be un-clickable.
      */
-    public void getPrefsOnStartu() {
+    public void getPrefsOnStartup() {
         SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
         sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "").charAt(0);
@@ -139,7 +137,7 @@ public class MainActivity extends Activity {
      */
     public void onAboutClick(View view) {
 
-        ImageButton T=(ImageButton)findViewById(R.id.imageButton12);
+        ImageButton T = (ImageButton) findViewById(R.id.imageButton12);
         T.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -149,8 +147,19 @@ public class MainActivity extends Activity {
                 startActivity(i);
             }
         });
+    }
 
 
+    public void onTailorExcuse(View view) {
+        if (!username.equals("")){
+            Intent intent = new Intent(this, TailorExcuseActivity.class);
+            intent.putExtra(USERNAME, username);
+            intent.putExtra(AGE, age);
+            intent.putExtra(SEX, sex);
+            startActivity(intent);
+        } else {
+            this.onMainRegisterClick(view);
+        }
     }
 
 }

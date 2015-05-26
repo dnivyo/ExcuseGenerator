@@ -5,11 +5,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
+import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
+
 
 public class TailorExcuseActivity extends ActionBarActivity {
+    DatabaseHandler dbHandler;
+    List<Excuse> excuses;
+
+    private String username;
+    private char sex;
+    private int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dbHandler = new DatabaseHandler(this);
+        excuses = dbHandler.getAllExcuses();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tailor_excuse);
     }
@@ -35,4 +48,7 @@ public class TailorExcuseActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
