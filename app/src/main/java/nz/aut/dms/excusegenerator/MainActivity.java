@@ -72,7 +72,6 @@ public class MainActivity extends Activity {
         mp.start();
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-
     }
 
 

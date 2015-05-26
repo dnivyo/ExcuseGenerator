@@ -113,7 +113,7 @@
                 android:onClick="profileRegister"
                 android:gravity="center_vertical|center_horizontal|bottom"
                 android:textColor="#FFFFFF"
-                android:onClick="onMainRegisterClick"
+
                 />
             <TextView
                 android:layout_width="fill_parent"

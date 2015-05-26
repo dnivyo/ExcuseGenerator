@@ -8,6 +8,9 @@ import android.view.MenuItem;
 
 public class AboutActivity extends ActionBarActivity {
 
+
+    //String title = getResources().getString(R.string);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
