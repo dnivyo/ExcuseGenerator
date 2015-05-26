@@ -66,6 +66,16 @@ public class MainActivity extends Activity {
         startActivity(intent);
 
     }
+
+    public void profileRegister(View view){
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
+        mp.start();
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
