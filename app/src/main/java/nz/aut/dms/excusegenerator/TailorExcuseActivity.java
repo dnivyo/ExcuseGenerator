@@ -1,6 +1,7 @@
 package nz.aut.dms.excusegenerator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +21,11 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
 
 public class TailorExcuseActivity extends Activity implements AdapterView.OnItemSelectedListener {
+    private static final String EXTRA_MESSAGE ="";
     DatabaseHandler dbHandler;
     List<Excuse> excuses;
     Spinner spinnerPerson, spinnerQuality, spinnerExcuse;
-    String Person,Quality;
+    String Person,Quality,Excuse;
     private String username;
     private char sex;
     private int age;
@@ -36,12 +38,9 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         setContentView(R.layout.activity_tailor_excuse);
         // seb Added Code
 
-        //ArrayList<String> Person = new ArrayList<String>();
-       // Person.add("start");
-        //final ArrayList<String> Quality = new ArrayList<String>();
-       // Quality.add("start");
+
         final ArrayList<String> Excuse  = new ArrayList<String>();
-        Excuse.add("start");
+        Excuse.add("Please Select Your Target First");
 
         spinnerPerson = (Spinner) findViewById(R.id.spinPerson);
         ArrayAdapter<String> adapterPerson = new ArrayAdapter<String>(this,
@@ -68,6 +67,16 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         Person = spinnerPerson.getSelectedItem().toString();
         Quality = spinnerQuality.getSelectedItem().toString();
         showToast("Spinner1: Person=" + Person + ",Spinner2: Person=" + Quality);
+        dbHandler.getAllVailedExcuses(Person,Quality);
+    }
+    public void shareExcuse(View view) {
+        Excuse = spinnerExcuse.getSelectedItem().toString();
+        if(Excuse != "Please Select Your Target First") {
+            Intent intent = new Intent(this, ExcuseOutputActivity.class);
+            String message = ("Dear" + Person + "/n" + Excuse);
+            intent.putExtra(EXTRA_MESSAGE, message);
+            startActivity(intent);
+        }
     }
     //seb
     @Override

@@ -147,7 +147,11 @@ public class DatabaseHandler extends SQLiteAssetHelper {
                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-               personList.add(cursor.getString(1));
+               if(personList.contains(cursor.getString(1))){
+                   //true
+               }else{
+                   personList.add(cursor.getString(1));
+               }
            }
            while (cursor.moveToNext());
        }
@@ -166,7 +170,11 @@ public class DatabaseHandler extends SQLiteAssetHelper {
                            cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
                            cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
                            Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-                   qualityList.add(cursor.getString(2));
+                   if(qualityList.contains(cursor.getString(2))){
+                       //true
+                   }else{
+                       qualityList.add(cursor.getString(2));
+                   }
                }
                while (cursor.moveToNext());
            }
@@ -177,17 +185,18 @@ public class DatabaseHandler extends SQLiteAssetHelper {
        public ArrayList<String> getAllVailedExcuses(String person,String quality) {
         ArrayList<String> vailedExcusesList = new ArrayList<String>();
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES+"WHERE "+ person+ "AND"+ quality, null);//fix Query
-
+        //Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES + "WHERE" + KEY_PERSON + "=" + person + "AND" + KEY_QUALITY + "=" + quality, null);//fix Query
+           String q =("SELECT * FROM " + TABLE_EXCUSES+"WHERE "+ KEY_PERSON +'='+ person);
+           Cursor cursor = db.rawQuery(q, null);//fix Query
         if (cursor.moveToFirst()) {
             do {
                 Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
                         cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
                         Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-                if(cursor.getString(1) != cursor.getString(7)) {
-                    vailedExcusesList.add(cursor.getString(4));
-                }
+                //if(!cursor.getString(1).equals(cursor.getString(7))) {
+                    vailedExcusesList.add(cursor.getString(3));
+               // }
             }
             while (cursor.moveToNext());
         }

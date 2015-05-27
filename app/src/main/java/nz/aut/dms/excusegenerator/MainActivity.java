@@ -22,7 +22,7 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 //Oeyvind,
 //Ingvild
 //David
-//
+//Sebastian
 
 
 public class MainActivity extends Activity {
