@@ -56,9 +56,9 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         spinnerQuality.setOnItemSelectedListener(this);
 
         spinnerExcuse = (Spinner) findViewById(R.id.spinExcuse);
-        ArrayAdapter<String> adapterExcuse = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,Excuse);
-        spinnerExcuse.setAdapter(adapterExcuse); // Apply the adapter to the spinner
+            ArrayAdapter<String> adapterExcuse = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1, Excuse);
+            spinnerExcuse.setAdapter(adapterExcuse); // Apply the adapter to the spinner
         spinnerExcuse.setOnItemSelectedListener(this);
         //seb Added code
     }
@@ -67,7 +67,12 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         Person = spinnerPerson.getSelectedItem().toString();
         Quality = spinnerQuality.getSelectedItem().toString();
         showToast("Spinner1: Person=" + Person + ",Spinner2: Person=" + Quality);
-        dbHandler.getAllVailedExcuses(Person,Quality);
+
+        //test
+        ArrayAdapter<String> adapterExcuse = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,dbHandler.getAllVailedExcuses(Person, Quality));
+        spinnerExcuse.setAdapter(adapterExcuse);
+        //test
     }
     public void shareExcuse(View view) {
         Excuse = spinnerExcuse.getSelectedItem().toString();

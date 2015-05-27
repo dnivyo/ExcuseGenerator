@@ -185,9 +185,11 @@ public class DatabaseHandler extends SQLiteAssetHelper {
        public ArrayList<String> getAllVailedExcuses(String person,String quality) {
         ArrayList<String> vailedExcusesList = new ArrayList<String>();
         SQLiteDatabase db = getWritableDatabase();
+           //Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+          Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},KEY_PERSON + "=?", new String[]{person} , null, null, null);//fix Query
         //Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES + "WHERE" + KEY_PERSON + "=" + person + "AND" + KEY_QUALITY + "=" + quality, null);//fix Query
-           String q =("SELECT * FROM " + TABLE_EXCUSES+"WHERE "+ KEY_PERSON +'='+ person);
-           Cursor cursor = db.rawQuery(q, null);//fix Query
+           //String q =("SELECT * FROM " + TABLE_EXCUSES+"WHERE "+ KEY_PERSON +'='+ person);
+         //  Cursor cursor = db.rawQuery(q, null);//fix Query
         if (cursor.moveToFirst()) {
             do {
                 Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
