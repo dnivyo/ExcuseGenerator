@@ -69,8 +69,10 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         showToast("Spinner1: Person=" + Person + ",Spinner2: Person=" + Quality);
 
         //test
+        sex='g';
+        age=20;
         ArrayAdapter<String> adapterExcuse = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,dbHandler.getAllVailedExcuses(Person, Quality));
+                android.R.layout.simple_list_item_1,dbHandler.getAllVailedExcuses(Person, Quality,sex,age));
         spinnerExcuse.setAdapter(adapterExcuse);
         //test
     }
@@ -78,7 +80,7 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         Excuse = spinnerExcuse.getSelectedItem().toString();
         if(Excuse != "Please Select Your Target First") {
             Intent intent = new Intent(this, ExcuseOutputActivity.class);
-            String message = ("Dear" + Person + "/n" + Excuse);
+            String message = ("Dear " + Person + " " + Excuse);
             intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
         }

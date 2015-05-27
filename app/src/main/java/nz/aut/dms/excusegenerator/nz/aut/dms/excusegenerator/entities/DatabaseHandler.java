@@ -182,23 +182,22 @@ public class DatabaseHandler extends SQLiteAssetHelper {
            cursor.close();
            return qualityList;
        }
-       public ArrayList<String> getAllVailedExcuses(String person,String quality) {
+       public ArrayList<String> getAllVailedExcuses(String person,String quality,char sex,int age) {
         ArrayList<String> vailedExcusesList = new ArrayList<String>();
         SQLiteDatabase db = getWritableDatabase();
-           //Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
-          Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},KEY_PERSON + "=?", new String[]{person} , null, null, null);//fix Query
-        //Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES + "WHERE" + KEY_PERSON + "=" + person + "AND" + KEY_QUALITY + "=" + quality, null);//fix Query
-           //String q =("SELECT * FROM " + TABLE_EXCUSES+"WHERE "+ KEY_PERSON +'='+ person);
-         //  Cursor cursor = db.rawQuery(q, null);//fix Query
+           String stringSex = Character.toString(sex);
+            String[]SelectionArgs={person,quality};
+           Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_PERSON + "=? AND "+KEY_QUALITY + "=? ",SelectionArgs, null, null, null);//working Query
+          // Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},KEY_PERSON + "=?", new String[]{person} , null, null, null);//working Query
         if (cursor.moveToFirst()) {
             do {
                 Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
                         cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
                         Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-                //if(!cursor.getString(1).equals(cursor.getString(7))) {
+                if(age>= Integer.parseInt(cursor.getString(5))&& age<=Integer.parseInt(cursor.getString(6))) {
                     vailedExcusesList.add(cursor.getString(3));
-               // }
+                }
             }
             while (cursor.moveToNext());
         }
