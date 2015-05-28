@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
@@ -26,9 +27,10 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
     List<Excuse> excuses;
     Spinner spinnerPerson, spinnerQuality, spinnerExcuse;
     String Person,Quality,Excuse;
-    private String username;
-    private char sex;
-    private int age;
+     String username;
+     String sexString;
+     char sex;
+     int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +39,33 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tailor_excuse);
         // seb Added Code
-
-
+        Intent intent = getIntent();
+        username = intent.getStringExtra(MainActivity.USERNAME);
+        sexString = intent.getStringExtra(MainActivity.SEX);
+        sex =sexString.charAt(0);
+        ArrayList<String> personList  = new ArrayList<String>();
+        personList.add("parents");
+        personList.add("student");
+        personList.add("teacher");
+        personList.add("friend");
+        personList.add("employer");
+        personList.add("lover");
+        ArrayList<String> qualityList  = new ArrayList<String>();
+        qualityList.add("good");
+        qualityList.add("bad");
         final ArrayList<String> Excuse  = new ArrayList<String>();
         Excuse.add("Please Select Your Target First");
 
         spinnerPerson = (Spinner) findViewById(R.id.spinPerson);
         ArrayAdapter<String> adapterPerson = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, dbHandler.getAllPersons());
+                android.R.layout.simple_list_item_1, personList);
         spinnerPerson.setAdapter(adapterPerson); // Apply the adapter to the spinner
         spinnerPerson.setOnItemSelectedListener(this);
 
         /* Method 2 - Use String Array in string resources */
         spinnerQuality = (Spinner) findViewById(R.id.spinQuality);
         ArrayAdapter<String> adapterQuality = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,dbHandler.getAllQuality());
+                android.R.layout.simple_list_item_1,qualityList);
         spinnerQuality.setAdapter(adapterQuality);
         spinnerQuality.setOnItemSelectedListener(this);
 
@@ -64,17 +78,40 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
     }
     //seb
     public void getExcuse(View view) {
+        String inputPerson="";
+        String inputQuality="";
         Person = spinnerPerson.getSelectedItem().toString();
         Quality = spinnerQuality.getSelectedItem().toString();
         showToast("Spinner1: Person=" + Person + ",Spinner2: Person=" + Quality);
+        if (Person == "parents") {
+            inputPerson = "p";
+        }
+        if (Person == "student") {
+            inputPerson ="s";
+        }
+        if (Person == "teacher") {
+            inputPerson ="t";
+        }
+        if (Person == "friend") {
+            inputPerson ="f";
+        }
+        if (Person == "employer") {
+            inputPerson ="e";
+        }
+        if (Person == "lover") {
+            inputPerson ="l";
+        }
 
-        //test
-        sex='g';
-        age=20;
+        if(Quality == "good") {
+            inputQuality = "g";
+        }
+        if (Quality == "bad"){
+            inputQuality = "b";
+        }
         ArrayAdapter<String> adapterExcuse = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,dbHandler.getAllVailedExcuses(Person, Quality,sex,age));
+                android.R.layout.simple_list_item_1,dbHandler.getAllVailedExcuses(inputPerson, inputQuality,sex,age));
         spinnerExcuse.setAdapter(adapterExcuse);
-        //test
+
     }
     public void shareExcuse(View view) {
         Excuse = spinnerExcuse.getSelectedItem().toString();
@@ -114,20 +151,17 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
        //Seb
         switch(parent.getId()) {
             case R.id.spinPerson:
-                // Do stuff for spinner1
-                showToast("Spinner1: position=" + position );
+              //testing  showToast("Spinner1: position=" + position );
                 break;
             case R.id.spinQuality:
-                // Do stuff for spinner2
-                showToast("In switch-statement for spinner2. Value=" + parent.getItemAtPosition(position));
+                //testingshowToast("In switch-statement for spinner2. Value=" + parent.getItemAtPosition(position));
                 break;
             case R.id.spinExcuse:
-                // Do stuff for spinner2
-                showToast("In switch-statement for spinner3. Value=" + parent.getItemAtPosition(position));
+                //testing  showToast("In switch-statement for spinner3. Value=" + parent.getItemAtPosition(position));
                 break;
             default:
-                showToast("Read error log"); // DEBUG
-                Log.d("DEBUG", "a different spinner was selected");
+                //testing showToast("Read error log");
+                //testing  Log.d("DEBUG", "a different spinner was selected");
                 break;
             //seb
         }
@@ -136,12 +170,12 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
        //seb
-        Toast.makeText(this, "You selected nothing", Toast.LENGTH_LONG).show();
+        //testing Toast.makeText(this, "You selected nothing", Toast.LENGTH_LONG).show();
         //seb
     }
     //seb
     void showToast(CharSequence msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        //testing Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
     //seb
 }

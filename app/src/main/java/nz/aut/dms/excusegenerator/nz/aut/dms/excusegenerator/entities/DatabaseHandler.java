@@ -62,10 +62,10 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         db.close();
     }
 
-    public Excuse getExcuse(int id){
+    public Excuse getExcuse(int id) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_EXCUSES, new String[] { KEY_ID, KEY_PERSON, KEY_QUALITY,KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},
-                KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -79,8 +79,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
     }
 
 
-
-    public void deleteExcuse(Excuse excuse){
+    public void deleteExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_EXCUSES, KEY_ID + "=?", new String[]{String.valueOf(excuse.getId())});
         db.close();
@@ -134,69 +133,99 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         cursor.close();
         return excuseList;
     }
+
     //seb
-   public ArrayList<String> getAllPersons() {
-       ArrayList<String> personList = new ArrayList<String>();
-       //List<Excuse> personList = new ArrayList<Excuse>();
-       SQLiteDatabase db = getWritableDatabase();
-       Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
-
-       if (cursor.moveToFirst()) {
-           do {
-               Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
-                       cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
-                       cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
-                       Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-               if(personList.contains(cursor.getString(1))){
-                   //true
-               }else{
-                   personList.add(cursor.getString(1));
-               }
-           }
-           while (cursor.moveToNext());
-       }
-       db.close();
-       cursor.close();
-       return personList;
-   }
-       public ArrayList<String> getAllQuality() {
-           ArrayList<String> qualityList = new ArrayList<String>();
-           SQLiteDatabase db = getWritableDatabase();
-           Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
-
-           if (cursor.moveToFirst()) {
-               do {
-                   Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
-                           cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
-                           cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
-                           Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-                   if(qualityList.contains(cursor.getString(2))){
-                       //true
-                   }else{
-                       qualityList.add(cursor.getString(2));
-                   }
-               }
-               while (cursor.moveToNext());
-           }
-           db.close();
-           cursor.close();
-           return qualityList;
-       }
-       public ArrayList<String> getAllVailedExcuses(String person,String quality,char sex,int age) {
-        ArrayList<String> vailedExcusesList = new ArrayList<String>();
+    public void putPersonUsed(String inputExcuse,String inputPerson) {
+        ArrayList<String> personList = new ArrayList<String>();
+        //List<Excuse> personList = new ArrayList<Excuse>();
         SQLiteDatabase db = getWritableDatabase();
-           String stringSex = Character.toString(sex);
-            String[]SelectionArgs={person,quality};
-           Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_PERSON + "=? AND "+KEY_QUALITY + "=? ",SelectionArgs, null, null, null);//working Query
-          // Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},KEY_PERSON + "=?", new String[]{person} , null, null, null);//working Query
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
+
         if (cursor.moveToFirst()) {
             do {
                 Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
                         cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
                         Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-                if(age>= Integer.parseInt(cursor.getString(5))&& age<=Integer.parseInt(cursor.getString(6))) {
-                    vailedExcusesList.add(cursor.getString(3));
+                if (personList.contains(cursor.getString(1))) {
+                } else {
+                    personList.add(cursor.getString(1));
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+    }
+    public ArrayList<String> getAllPersons() {
+        ArrayList<String> personList = new ArrayList<String>();
+        //List<Excuse> personList = new ArrayList<Excuse>();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
+                if (personList.contains(cursor.getString(1))) {
+                    //true
+                } else {
+                    personList.add(cursor.getString(1));
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return personList;
+    }
+
+    public ArrayList<String> getAllQuality() {
+        ArrayList<String> qualityList = new ArrayList<String>();
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
+                if (qualityList.contains(cursor.getString(2))) {
+                    //true
+                } else {
+                    qualityList.add(cursor.getString(2));
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return qualityList;
+    }
+
+    public ArrayList<String> getAllVailedExcuses(String inputPerson, String quality, char sex, int age) {
+        ArrayList<String> vailedExcusesList = new ArrayList<String>();
+        SQLiteDatabase db = getWritableDatabase();
+        String[] SelectionArgs = {quality};
+        Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_QUALITY + "=? ", SelectionArgs, null, null, null);//working Query
+        //Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_PERSON + "=? AND "+KEY_QUALITY + "=? ",SelectionArgs, null, null, null);//working Query
+        if (cursor.moveToFirst()) {
+            do {
+                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
+                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
+                if (inputPerson != cursor.getString(7)) {
+                    if (stringCheck(cursor.getString(1), inputPerson)) {
+                        if (age >= Integer.parseInt(cursor.getString(5)) && age <= Integer.parseInt(cursor.getString(6))) {
+                            if (sex == cursor.getString(4).charAt(0) || cursor.getString(4).charAt(0) == 'u') {
+                                vailedExcusesList.add(cursor.getString(3));
+                            }
+                        }
+                    }
                 }
             }
             while (cursor.moveToNext());
@@ -205,9 +234,13 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         cursor.close();
         return vailedExcusesList;
     }
-       //seb
-
-
-
-
+    public boolean stringCheck(String Person, String inputPerson) {
+        if (Person.contains(inputPerson)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
+
+
