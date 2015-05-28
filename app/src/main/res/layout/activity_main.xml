@@ -54,7 +54,7 @@
         android:layout_height="339dp"
         android:layout_gravity="center_horizontal"
         android:weightSum="1"
-        android:background="@null" >
+        android:background="@null">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -74,7 +74,7 @@
                     android:layout_height="fill_parent"
                     android:id="@+id/imageButton5"
                     android:background="@null"
-                    android:src="@mipmap/final"
+                    android:src="@mipmap/finalxx"
                     android:onClick="randomExcuseIntent"/>
             </LinearLayout>
         </LinearLayout>
