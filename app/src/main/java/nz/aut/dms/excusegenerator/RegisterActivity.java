@@ -16,7 +16,7 @@ import android.widget.ToggleButton;
 public class RegisterActivity extends Activity {
 
     private String username;
-    private char sex;
+    private String sex;
     private int age;
     EditText usernameView;
     ToggleButton sexView;
@@ -31,16 +31,16 @@ public class RegisterActivity extends Activity {
         ageView = (EditText) findViewById(R.id.ageRegister);
         Intent intent = getIntent();
         username = intent.getStringExtra(MainActivity.USERNAME);
-        sex = intent.getStringExtra(MainActivity.SEX).charAt(0);
-        age = Integer.parseInt(intent.getStringExtra(MainActivity.AGE));
-        if (!username.equals("")){
+        if (!username.equals("")) {
+            sex = intent.getStringExtra(MainActivity.SEX);
+            age = intent.getIntExtra(MainActivity.AGE, -1);
             usernameView.setText(username);
-            if (sex  == 'f') {
+            if (sex.charAt(0) == 'f') {
                 sexView.setChecked(true);
             } else {
                 sexView.setChecked(false);
             }
-            ageView.setText(age);
+            ageView.setText(age+"");
         }
     }
 
@@ -80,9 +80,9 @@ public class RegisterActivity extends Activity {
 
         username = usernameView.getText().toString();
         if (sexView.isChecked()) {
-            sex = 'f';
+            sex = "f";
         } else {
-            sex = 'm';
+            sex = "m";
         }
         age = Integer.parseInt(ageView.getText().toString());
 

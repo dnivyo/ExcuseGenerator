@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
     public static final String EXTRA_MESSAGE ="";
 
     private String username;
-    private char sex;
+    private String sex;
     private int age;
 
     DatabaseHandler dbHandler;
@@ -112,8 +112,8 @@ public class MainActivity extends Activity {
     public void getPrefsOnStartup() {
         SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
-       // sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "").charAt(0);
-        age = sharedPreferences.getInt(getString(R.string.prefs_file_saved_age), 0);
+        sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "");
+        age = sharedPreferences.getInt(getString(R.string.prefs_file_saved_age), -1);
     }
 
 
@@ -151,15 +151,15 @@ public class MainActivity extends Activity {
 
 
     public void onTailorExcuse(View view) {
-       // if (!username.equals("")){
-            Intent intent = new Intent(this, TailorExcuseActivity.class);
-            //intent.putExtra(USERNAME, username);
-           // intent.putExtra(AGE, age);
-          //  intent.putExtra(SEX, sex);
-            startActivity(intent);
-      //  } else {
-       //     this.onMainRegisterClick(view);
-       // }
+       if (!username.equals("")){
+           Intent intent = new Intent(this, TailorExcuseActivity.class);
+           intent.putExtra(USERNAME, username);
+           intent.putExtra(AGE, age);
+           intent.putExtra(SEX, sex);
+           startActivity(intent);
+       } else {
+           this.onMainRegisterClick(view);
+        }
     }
 
 }

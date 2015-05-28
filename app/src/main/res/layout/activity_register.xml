@@ -35,12 +35,23 @@
         android:layout_height="wrap_content"
         android:text="Sex"
         android:id="@+id/sexRegister"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="82dp"
         android:checked="false"
         android:textOff="Male"
-        android:textOn="Female" />
+        android:textOn="Female"
+        android:layout_below="@+id/ageRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="43dp"
+        android:onClick="onRegisterButtonClick"
+        />
 
 
 </RelativeLayout>
