@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dbHandler = new DatabaseHandler(getApplicationContext());
-        //getPrefsOnStartup();
+        getPrefsOnStartup();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
@@ -149,7 +149,7 @@ public class MainActivity extends Activity {
 
 
     public void onTailorExcuse(View view) {
-       if (!username.equals("")){
+      if (!username.equals("")){
            Intent intent = new Intent(this, TailorExcuseActivity.class);
            intent.putExtra(USERNAME, username);
            intent.putExtra(AGE, age);
