@@ -41,11 +41,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dbHandler = new DatabaseHandler(getApplicationContext());
-        getPrefsOnStartup();
+        //getPrefsOnStartup();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //MediaPlayer mp = MediaPlayer.create(MainActivity.this,R.raw.concerto);
-        //mp.start();
     }
 
     /**
@@ -60,7 +58,7 @@ public class MainActivity extends Activity {
         int dbCount = dbHandler.getExcuseCount();
         Random random =new Random();
         int randomInt = random.nextInt(dbCount)+min;
-                Excuse newExcuse = dbHandler.getExcuse(randomInt);
+        Excuse newExcuse = dbHandler.getExcuse(randomInt);
         String message=(newExcuse.getExcuse());
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
@@ -69,7 +67,6 @@ public class MainActivity extends Activity {
     public void profileRegister(View view){
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
-
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
@@ -148,6 +145,7 @@ public class MainActivity extends Activity {
             }
         });
     }
+
 
 
     public void onTailorExcuse(View view) {

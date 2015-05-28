@@ -17,7 +17,7 @@
     <string name="about_h">About</string>
     <string name="about_p1">The Excuse Generator is made by DØSI Developers for the Software Development Practice paper at AUT. </string>
     <string name="about_p2">The excuse generator provides the user with a large amount of different excuses. It allows the user to generate a random excuse with a simple click. Users can also custom build excuses with the Tailored Excuse function. </string>
-    <string name="information_h">Information</string>
+    <string name="information_h">INFO</string>
     <string name="information_p1">When pressing Random Excuse the app will generate an excuse from our database. The excuse will show on a new screen, where you can share it to your chosen social media. </string>
     <string name="information_p2">On the Profile Page you can add information about yourself, this information helps us tailor excuses for your needs. </string>
     <string name="information_p3">Tailored Excuse is where you get excuses based on the information given in your profile and information about the target(s). If you try to access Tailored Excuse without a profile you will be redirected to the profile page. </string>
