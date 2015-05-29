@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
 
     android:weightSum="1"
-    android:background="@mipmap/gradie"
+    android:background="#007aff"
+
     android:baselineAligned="true">
-
-
 
 
     <LinearLayout
