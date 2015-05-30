@@ -128,7 +128,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/information_p2"
+                android:text="@string/information_p3"
                 android:fontFamily="sans-serif-light"
                 android:textSize="21sp"
                 android:id="@+id/textView9"
