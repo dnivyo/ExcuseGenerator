@@ -38,7 +38,7 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         excuses = dbHandler.getAllExcuses();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tailor_excuse);
-        // seb Added Code
+
         Intent intent = getIntent();
         username = intent.getStringExtra(MainActivity.USERNAME);
         sexString = intent.getStringExtra(MainActivity.SEX);
@@ -59,10 +59,9 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         spinnerPerson = (Spinner) findViewById(R.id.spinPerson);
         ArrayAdapter<String> adapterPerson = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, personList);
-        spinnerPerson.setAdapter(adapterPerson); // Apply the adapter to the spinner
+        spinnerPerson.setAdapter(adapterPerson);
         spinnerPerson.setOnItemSelectedListener(this);
 
-        /* Method 2 - Use String Array in string resources */
         spinnerQuality = (Spinner) findViewById(R.id.spinQuality);
         ArrayAdapter<String> adapterQuality = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,qualityList);
@@ -72,11 +71,9 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         spinnerExcuse = (Spinner) findViewById(R.id.spinExcuse);
             ArrayAdapter<String> adapterExcuse = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1, Excuse);
-            spinnerExcuse.setAdapter(adapterExcuse); // Apply the adapter to the spinner
+            spinnerExcuse.setAdapter(adapterExcuse);
         spinnerExcuse.setOnItemSelectedListener(this);
-        //seb Added code
     }
-    //seb
     public void getExcuse(View view) {
         String inputPerson="";
         String inputQuality="";
@@ -117,7 +114,7 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         Excuse = spinnerExcuse.getSelectedItem().toString();
         if(Excuse != "Please Select Your Target First") {
             Intent intent = new Intent(this, ExcuseOutputActivity.class);
-            String message = ("Dear " + Person + " " + Excuse);
+            String message = (Excuse);
             intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
         }
@@ -148,7 +145,6 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-       //Seb
         switch(parent.getId()) {
             case R.id.spinPerson:
               //testing  showToast("Spinner1: position=" + position );
@@ -160,22 +156,15 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
                 //testing  showToast("In switch-statement for spinner3. Value=" + parent.getItemAtPosition(position));
                 break;
             default:
-                //testing showToast("Read error log");
-                //testing  Log.d("DEBUG", "a different spinner was selected");
                 break;
-            //seb
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-       //seb
-        //testing Toast.makeText(this, "You selected nothing", Toast.LENGTH_LONG).show();
-        //seb
+
     }
-    //seb
     void showToast(CharSequence msg) {
         //testing Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-    //seb
 }

@@ -148,8 +148,10 @@ public class MainActivity extends Activity {
             }
         });
     }
-
-
+    /**
+     * Will Send the user to the TailorExcuseActivity so long as they have registered
+     * @param view
+     */
 
     public void onTailorExcuse(View view) {
         getPrefsOnStartup();

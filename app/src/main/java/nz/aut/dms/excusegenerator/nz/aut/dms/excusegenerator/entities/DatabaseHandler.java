@@ -134,29 +134,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         return excuseList;
     }
 
-    //seb
-    public void putPersonUsed(String inputExcuse,String inputPerson) {
-        ArrayList<String> personList = new ArrayList<String>();
-        //List<Excuse> personList = new ArrayList<Excuse>();
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),
-                        cursor.getString(1), cursor.getString(2).charAt(0), cursor.getString(3),
-                        cursor.getString(4).charAt(0), Integer.parseInt(cursor.getString(5)),
-                        Integer.parseInt((cursor.getString(6))), cursor.getString(7));
-                if (personList.contains(cursor.getString(1))) {
-                } else {
-                    personList.add(cursor.getString(1));
-                }
-            }
-            while (cursor.moveToNext());
-        }
-        db.close();
-        cursor.close();
-    }
     public ArrayList<String> getAllPersons() {
         ArrayList<String> personList = new ArrayList<String>();
         //List<Excuse> personList = new ArrayList<Excuse>();
