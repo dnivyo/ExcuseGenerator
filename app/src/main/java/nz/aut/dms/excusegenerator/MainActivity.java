@@ -67,6 +67,7 @@ public class MainActivity extends Activity {
     public void profileRegister(View view){
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
+
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
@@ -119,8 +120,10 @@ public class MainActivity extends Activity {
      * @param view
      */
     public void onMainRegisterClick(View view) {
+        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
+        mp.start();
         Intent intent = new Intent(this, RegisterActivity.class);
-
+        getPrefsOnStartup();
         intent.putExtra(USERNAME, username);
         intent.putExtra(AGE, age);
         intent.putExtra(SEX, sex);
@@ -149,6 +152,7 @@ public class MainActivity extends Activity {
 
 
     public void onTailorExcuse(View view) {
+        getPrefsOnStartup();
       if (!username.equals("")){
            Intent intent = new Intent(this, TailorExcuseActivity.class);
            intent.putExtra(USERNAME, username);

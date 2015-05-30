@@ -1,5 +1,6 @@
 package nz.aut.dms.excusegenerator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class AboutActivity extends ActionBarActivity {
+public class AboutActivity extends Activity {
 
 
 

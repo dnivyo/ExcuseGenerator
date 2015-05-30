@@ -1,5 +1,6 @@
 package nz.aut.dms.excusegenerator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
@@ -16,7 +17,7 @@ import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHa
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
 
-public class ExcuseOutputActivity extends ActionBarActivity {
+public class ExcuseOutputActivity extends Activity {
 
 
     @Override
