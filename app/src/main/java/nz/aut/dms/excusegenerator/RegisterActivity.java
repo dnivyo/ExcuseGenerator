@@ -82,16 +82,17 @@ public class RegisterActivity extends Activity {
         sexView = (ToggleButton) findViewById(R.id.sexRegister);
         ageView = (EditText) findViewById(R.id.ageRegister);
 
-        username = usernameView.getText().toString();
-        if (sexView.isChecked()) {
-            sex = "f";
-        } else {
-            sex = "m";
-        }
 
-        if (isValidAge(ageView.getText().toString()) && isValidUsername(username)) {
+
+        if (isValidAge(ageView.getText().toString()) && isValidUsername(usernameView.getText().toString())) {
             Intent intent = new Intent(this, TailorExcuseActivity.class);
             age = Integer.parseInt(ageView.getText().toString());
+            username = usernameView.getText().toString();
+            if (sexView.isChecked()) {
+                sex = "f";
+            } else {
+                sex = "m";
+            }
 
             intent.putExtra(MainActivity.USERNAME, username);
             intent.putExtra(MainActivity.SEX, sex);
