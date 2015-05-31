@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
@@ -18,6 +18,10 @@ public class RegisterActivity extends Activity {
     private String username;
     private String sex;
     private int age;
+    public final String AGE = "[0-9]";
+    public final String AGE_LENGTH = "{1,2}";
+    public final String USERNAME = "[a-zA-ZÊ¯Â∆ÿ≈-]";
+    public final String USERNAME_LENGTH = "{2,20}";
     EditText usernameView;
     ToggleButton sexView;
     EditText ageView;
@@ -72,7 +76,7 @@ public class RegisterActivity extends Activity {
      * @param view
      */
     public void onRegisterButtonClick(View view) {
-        Intent intent = new Intent(this, TailorExcuseActivity.class);
+
 
         usernameView = (EditText) findViewById(R.id.usernameRegister);
         sexView = (ToggleButton) findViewById(R.id.sexRegister);
@@ -84,19 +88,32 @@ public class RegisterActivity extends Activity {
         } else {
             sex = "m";
         }
-        age = Integer.parseInt(ageView.getText().toString());
 
-        intent.putExtra(MainActivity.USERNAME, username);
-        intent.putExtra(MainActivity.SEX, sex);
-        intent.putExtra(MainActivity.AGE, age);
+        if (isValidAge(ageView.getText().toString()) && isValidUsername(username)) {
+            Intent intent = new Intent(this, TailorExcuseActivity.class);
+            age = Integer.parseInt(ageView.getText().toString());
 
-        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(getString(R.string.prefs_file_saved_username), username);
-        editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
-        editor.putInt(getString(R.string.prefs_file_saved_age), age);
-        editor.commit();
+            intent.putExtra(MainActivity.USERNAME, username);
+            intent.putExtra(MainActivity.SEX, sex);
+            intent.putExtra(MainActivity.AGE, age);
 
-        startActivity(intent);
+            SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.prefs_file_saved_username), username);
+            editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
+            editor.putInt(getString(R.string.prefs_file_saved_age), age);
+            editor.commit();
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Please enter a valid age (0-99) and username", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public boolean isValidUsername(String username){
+        return username.matches("^" + USERNAME + USERNAME_LENGTH);
+    }
+    public boolean isValidAge(String age) {
+        return age.matches("^" + AGE + AGE_LENGTH);
     }
 }
