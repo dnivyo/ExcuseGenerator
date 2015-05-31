@@ -11,15 +11,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinPerson"
-        android:layout_marginTop="52dp"
         android:fontFamily="sans-serif-light"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true"
         android:gravity="center_vertical"
         android:spinnerMode="dialog"
-        android:layout_alignParentBottom="false"
-        android:layout_alignWithParentIfMissing="false" />
+        android:popupBackground="#5ac8fa"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_above="@+id/spinQuality"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -27,10 +26,10 @@
         android:id="@+id/spinQuality"
         android:fontFamily="sans-serif-light"
         android:spinnerMode="dialog"
-        android:layout_below="@+id/spinPerson"
+        android:layout_marginBottom="51dp"
+        android:layout_above="@+id/btnGetExcuse"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="fill_parent"
@@ -39,9 +38,10 @@
         android:spinnerMode="dialog"
         android:fontFamily="sans-serif-light"
         android:gravity="center_vertical|center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/btnGetExcuse"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="49dp" />
 
     <Button
         android:layout_width="fill_parent"
@@ -52,10 +52,9 @@
         android:textColor="#FFFFFF"
         android:background="#FF3b30"
         android:fontFamily="sans-serif-light"
-        android:layout_above="@+id/btnShare"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="38dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="fill_parent"

@@ -188,8 +188,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         ArrayList<String> vailedExcusesList = new ArrayList<String>();
         SQLiteDatabase db = getWritableDatabase();
         String[] SelectionArgs = {quality};
-        Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_QUALITY + "=? ", SelectionArgs, null, null, null);//working Query
-        //Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_PERSON + "=? AND "+KEY_QUALITY + "=? ",SelectionArgs, null, null, null);//working Query
+        Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON}, KEY_QUALITY + "=? ", SelectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 Excuse excuse = new Excuse(Integer.parseInt(cursor.getString(0)),

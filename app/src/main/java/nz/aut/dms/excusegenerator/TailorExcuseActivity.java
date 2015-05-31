@@ -79,7 +79,7 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
         String inputQuality="";
         Person = spinnerPerson.getSelectedItem().toString();
         Quality = spinnerQuality.getSelectedItem().toString();
-        showToast("Spinner1: Person=" + Person + ",Spinner2: Person=" + Quality);
+
         if (Person == "parents") {
             inputPerson = "p";
         }
@@ -147,13 +147,13 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()) {
             case R.id.spinPerson:
-              //testing  showToast("Spinner1: position=" + position );
+
                 break;
             case R.id.spinQuality:
-                //testingshowToast("In switch-statement for spinner2. Value=" + parent.getItemAtPosition(position));
+
                 break;
             case R.id.spinExcuse:
-                //testing  showToast("In switch-statement for spinner3. Value=" + parent.getItemAtPosition(position));
+
                 break;
             default:
                 break;
@@ -163,8 +163,5 @@ public class TailorExcuseActivity extends Activity implements AdapterView.OnItem
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-    void showToast(CharSequence msg) {
-        //testing Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }
