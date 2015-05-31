@@ -20,7 +20,7 @@ public class RegisterActivity extends Activity {
     private int age;
     public final String AGE = "[0-9]";
     public final String AGE_LENGTH = "{1,2}";
-    public final String USERNAME = "[a-zA-ZæøåÆØÅ-]";
+    public final String USERNAME = "[a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-]";
     public final String USERNAME_LENGTH = "{2,20}";
     EditText usernameView;
     ToggleButton sexView;
@@ -101,13 +101,28 @@ public class RegisterActivity extends Activity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(getString(R.string.prefs_file_saved_username), username);
             editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
-            editor.putInt(getString(R.string.prefs_file_saved_age), age);
+            //editor.putInt(getString(R.string.prefs_file_saved_age), age);
             editor.commit();
 
             startActivity(intent);
-        } else {
+        } else if (!isValidAge(ageView.getText().toString())) {
             Toast.makeText(this, "Please enter a valid age (0-99) and username", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(getString(R.string.prefs_file_saved_age), age);
+
+        } else {
+
+            SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.prefs_file_saved_username), username);
+            editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
+            editor.putInt(getString(R.string.prefs_file_saved_age), age);
+            editor.commit();
+
         }
+
+
     }
 
     public boolean isValidUsername(String username){
