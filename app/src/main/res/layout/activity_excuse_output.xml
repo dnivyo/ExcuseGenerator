@@ -66,10 +66,10 @@
                 android:onClick="shareIt"
                 android:id="@+id/button2"
                 android:layout_gravity="center"
-                android:background="#ff3b30"
+                android:background="#007aff"
                 android:textColor="#FFFFFF"
                 android:fontFamily="sans-serif-light"
-                android:textSize="40dp" />
+                android:textSize="21dp" />
         </FrameLayout>
 
     </LinearLayout>

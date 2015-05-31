@@ -12,49 +12,61 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinPerson"
         android:layout_marginTop="52dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:fontFamily="sans-serif-light"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
         android:gravity="center_vertical"
-        android:spinnerMode="dialog" />
+        android:spinnerMode="dialog"
+        android:layout_alignParentBottom="false"
+        android:layout_alignWithParentIfMissing="false" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinQuality"
-        android:layout_above="@+id/btnGetExcuse"
+        android:fontFamily="sans-serif-light"
+        android:spinnerMode="dialog"
+        android:layout_below="@+id/spinPerson"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="25dp"
-        android:spinnerMode="dialog" />
+        android:layout_marginTop="40dp" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinExcuse"
-        android:layout_below="@+id/btnGetExcuse"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="62dp"
-        android:spinnerMode="dialog" />
+        android:spinnerMode="dialog"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="GetExcuse"
+        android:text="Get Excuse"
         android:id="@+id/btnGetExcuse"
         android:onClick="getExcuse"
-        android:layout_centerVertical="true"
+        android:textColor="#FFFFFF"
+        android:background="#FF3b30"
+        android:fontFamily="sans-serif-light"
+        android:layout_above="@+id/btnShare"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="38dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Share"
+        android:fontFamily="sans-serif-light"
         android:id="@+id/btnShare"
         android:onClick="shareExcuse"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#007aff"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

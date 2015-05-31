@@ -48,15 +48,13 @@
         android:checked="false"
         android:textOff="Male"
         android:textOn="Female"
-        android:layout_marginTop="74dp"
         android:textSize="21dp"
-        android:layout_below="@+id/ageRegister"
         android:background="#007aff"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="53dp"
+        android:layout_above="@+id/button"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#FFFFFF" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="fill_parent"
@@ -64,13 +62,13 @@
         android:text="Save"
         android:fontFamily="sans-serif-light"
         android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="43dp"
         android:onClick="onRegisterButtonClick"
         android:textSize="21dp"
-        android:background="#FF3b30"
-        android:textColor="#FFFFFF" />
+        android:background="#ff3b30"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
