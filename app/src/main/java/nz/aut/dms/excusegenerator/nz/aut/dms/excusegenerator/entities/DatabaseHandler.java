@@ -11,14 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Got the SQLiteAssetHelper to work. Have included a populated database as well, but for now
- * it's just one excuse. At least we can deploy the app with our own database. Used SQLiteStudio
- * to edit the database.
- *
- * This retreives the ExcusesList and can add and delete single excuses. It can also retreive
- * certain excuses, but there are no complicated search functions. Thought we might just do that
- * in the ArrayList that we get from the db instead.
- *
+ * Database Handler for the excuse database.
+ * SQLite
  *
  * Created by Oeyvind on 14.05.2015.
  */
@@ -50,18 +44,35 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         onCreate(db);
     }
 
+    /**
+     * Create excuse in database
+     *
+     * @param excuse
+     */
     public void createExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
+        values.put(KEY_ID, excuse.getId());
+        values.put(KEY_PERSON, excuse.getPerson());
+        values.put(KEY_QUALITY, String.valueOf(excuse.getQuality()));
         values.put(KEY_EXCUSE, excuse.getExcuse());
+        values.put(KEY_SEX, String.valueOf(excuse.getSex()));
+        values.put(KEY_MIN_AGE, String.valueOf(excuse.getMinAge()));
+        values.put(KEY_MAX_AGE, String.valueOf(excuse.getMaxAge()));
         values.put(KEY_USED_ON, excuse.getUsedOn());
 
         db.insert(TABLE_EXCUSES, null, values);
         db.close();
     }
 
+    /**
+     * Retreive excuse with ID id
+     *
+     * @param id
+     * @return Excuse
+     */
     public Excuse getExcuse(int id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_EXCUSES, new String[]{KEY_ID, KEY_PERSON, KEY_QUALITY, KEY_EXCUSE, KEY_SEX, KEY_MIN_AGE, KEY_MAX_AGE, KEY_USED_ON},
@@ -79,12 +90,21 @@ public class DatabaseHandler extends SQLiteAssetHelper {
     }
 
 
+    /**
+     * Delete current excuse from database
+     * @param excuse
+     */
     public void deleteExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_EXCUSES, KEY_ID + "=?", new String[]{String.valueOf(excuse.getId())});
         db.close();
     }
 
+    /**
+     * Returns the number of excuses in database
+     *
+     * @return int
+     */
     public int getExcuseCount() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXCUSES, null);
@@ -94,6 +114,12 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         return count;
     }
 
+    /**
+     * Updates current excuse
+     *
+     * @param excuse
+     * @return
+     */
     public int updateExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -114,6 +140,11 @@ public class DatabaseHandler extends SQLiteAssetHelper {
     }
 
 
+    /**
+     * Returns a List with all excuses in database.
+     *
+     * @return List<Excuse>
+     */
     public List<Excuse> getAllExcuses() {
         List<Excuse> excuseList = new ArrayList<Excuse>();
         SQLiteDatabase db = getWritableDatabase();
@@ -212,11 +243,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
         return vailedExcusesList;
     }
     public boolean stringCheck(String Person, String inputPerson) {
-        if (Person.contains(inputPerson)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Person.contains(inputPerson);
     }
 }
 

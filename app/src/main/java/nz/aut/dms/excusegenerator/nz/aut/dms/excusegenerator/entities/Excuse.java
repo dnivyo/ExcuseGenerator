@@ -1,23 +1,11 @@
 package nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities;
 
 /**
- * I added some variables to this. Just an example, but the functionality should be there.
- *
- * How about
- * String excuse - The excuse
- * char sex - Excuse most probably used by female/male/both
- * int minAge - Minimum age for who would probably use this excuse
- * int maxAge - Maximum age for who would probably use this excuse
- * String usedOn - Who this excuse could be used on (E.g: Teacher, Employer, Friend, Lover....?)
- *
- * Some other variables could be a String storing who this excuse actually have been used on and
- * the date that it was last used on such a person. Could also have a rating for what kind of excuse
- * this is (Bullet proof/Random/Obvious).
+ * Excuse entity
  *
  * Created by Oeyvind on 14.05.2015.
  */
 public class Excuse {
-    //comment
     private int id;
     private String person;
     private char quality;

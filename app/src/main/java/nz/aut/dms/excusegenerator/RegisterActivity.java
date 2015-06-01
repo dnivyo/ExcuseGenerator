@@ -13,6 +13,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
+/**
+ * Actitivy class for the profile information.
+ */
 public class RegisterActivity extends Activity {
 
     private String username;
@@ -73,6 +76,7 @@ public class RegisterActivity extends Activity {
     /**
      * Getting input. Saving it in the preference file, stores it in the intent and
      * forwards the user to the Tailor Excuse Activity
+     *
      * @param view
      */
     public void onRegisterButtonClick(View view) {
@@ -129,6 +133,7 @@ public class RegisterActivity extends Activity {
     public boolean isValidUsername(String username){
         return username.matches("^" + USERNAME + USERNAME_LENGTH);
     }
+
     public boolean isValidAge(String age) {
         return age.matches("^" + AGE + AGE_LENGTH);
     }
