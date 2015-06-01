@@ -18,13 +18,6 @@ import java.util.Random;
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
-//The development team consists of:
-//Oeyvind,
-//Ingvild
-//David
-//Sebastian
-
-
 public class MainActivity extends Activity {
     public final static String USERNAME = "nz.aut.dms.excusegenerator.USERNAME";
     public final static String SEX = "nz.aut.dms.excusegenerator.SEX";
@@ -41,7 +34,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dbHandler = new DatabaseHandler(getApplicationContext());
-        getPrefsOnStartup();
+        getSharedPrefs();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
@@ -50,28 +43,25 @@ public class MainActivity extends Activity {
      * Will send the user to the excuseView.
      * @param view
      */
-    public void randomExcuseIntent(View view){
+    public void randomExcuseIntent(View view) {
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
         Intent intent = new Intent(this, ExcuseOutputActivity.class);
-        int min =1;
+        int min = 1;
         int dbCount = dbHandler.getExcuseCount();
-        Random random =new Random();
-        int randomInt = random.nextInt(dbCount)+min;
+        Random random = new Random();
+        int randomInt = random.nextInt(dbCount) + min;
         Excuse newExcuse = dbHandler.getExcuse(randomInt);
-        String message=(newExcuse.getExcuse());
+        String message = (newExcuse.getExcuse());
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
-    public void profileRegister(View view){
-        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
-        mp.start();
-
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSharedPrefs();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,19 +85,11 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void soundPlay (View view) {
-
-
-        MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
-        mp.start();
-
-    }
-
     /**
      * Loading saved userinformation from file.
      * If userinformation is unavailable, the Login-button should be un-clickable.
      */
-    public void getPrefsOnStartup() {
+    public void getSharedPrefs() {
         SharedPreferences sharedPreferences = this.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
         sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "");
@@ -123,11 +105,10 @@ public class MainActivity extends Activity {
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
         Intent intent = new Intent(this, RegisterActivity.class);
-        getPrefsOnStartup();
+        getSharedPrefs();
         intent.putExtra(USERNAME, username);
         intent.putExtra(AGE, age);
         intent.putExtra(SEX, sex);
-
         startActivity(intent);
     }
 
@@ -154,7 +135,7 @@ public class MainActivity extends Activity {
      */
 
     public void onTailorExcuse(View view) {
-        getPrefsOnStartup();
+        getSharedPrefs();
       if (!username.equals("")){
            Intent intent = new Intent(this, TailorExcuseActivity.class);
            intent.putExtra(USERNAME, username);

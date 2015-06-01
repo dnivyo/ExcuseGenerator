@@ -23,7 +23,7 @@ public class RegisterActivity extends Activity {
     private int age;
     public final String AGE = "[0-9]";
     public final String AGE_LENGTH = "{1,2}";
-    public final String USERNAME = "[a-zA-Z������-]";
+    public final String USERNAME = "[a-zA-ZæøåÆØÅ-]";
     public final String USERNAME_LENGTH = "{2,20}";
     EditText usernameView;
     ToggleButton sexView;
@@ -73,6 +73,12 @@ public class RegisterActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSharedPrefs();
+    }
+
     /**
      * Getting input. Saving it in the preference file, stores it in the intent and
      * forwards the user to the Tailor Excuse Activity
@@ -81,12 +87,9 @@ public class RegisterActivity extends Activity {
      */
     public void onRegisterButtonClick(View view) {
 
-
         usernameView = (EditText) findViewById(R.id.usernameRegister);
         sexView = (ToggleButton) findViewById(R.id.sexRegister);
         ageView = (EditText) findViewById(R.id.ageRegister);
-
-
 
         if (isValidAge(ageView.getText().toString()) && isValidUsername(usernameView.getText().toString())) {
             Intent intent = new Intent(this, TailorExcuseActivity.class);
@@ -97,7 +100,6 @@ public class RegisterActivity extends Activity {
             } else {
                 sex = "m";
             }
-
             intent.putExtra(MainActivity.USERNAME, username);
             intent.putExtra(MainActivity.SEX, sex);
             intent.putExtra(MainActivity.AGE, age);
@@ -106,25 +108,11 @@ public class RegisterActivity extends Activity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(getString(R.string.prefs_file_saved_username), username);
             editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
-            //editor.putInt(getString(R.string.prefs_file_saved_age), age);
+            editor.putInt(getString(R.string.prefs_file_saved_age), age);
             editor.commit();
-
             startActivity(intent);
-        } else if (!isValidAge(ageView.getText().toString())) {
-            Toast.makeText(this, "Please enter a valid age (0-99) and username", Toast.LENGTH_SHORT).show();
-            SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(getString(R.string.prefs_file_saved_age), age);
-
         } else {
-
-            SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.prefs_file_saved_username), username);
-            editor.putString(getString(R.string.prefs_file_saved_sex), String.valueOf(sex));
-            editor.putInt(getString(R.string.prefs_file_saved_age), age);
-            editor.commit();
-
+            Toast.makeText(this, "Please enter a valid age (0-99) and username", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -136,5 +124,12 @@ public class RegisterActivity extends Activity {
 
     public boolean isValidAge(String age) {
         return age.matches("^" + AGE + AGE_LENGTH);
+    }
+
+    public void getSharedPrefs() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences(MainActivity.PREFS_FILE, Context.MODE_PRIVATE);
+        username = sharedPreferences.getString(getString(R.string.prefs_file_saved_username), "");
+        sex = sharedPreferences.getString(getString(R.string.prefs_file_saved_sex), "");
+        age = sharedPreferences.getInt(getString(R.string.prefs_file_saved_age), -1);
     }
 }

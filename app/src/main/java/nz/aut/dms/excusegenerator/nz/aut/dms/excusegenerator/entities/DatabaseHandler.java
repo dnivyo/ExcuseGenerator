@@ -47,7 +47,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
     /**
      * Create excuse in database
      *
-     * @param excuse
+     * @param excuse Excuse object
      */
     public void createExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
@@ -68,9 +68,9 @@ public class DatabaseHandler extends SQLiteAssetHelper {
     }
 
     /**
-     * Retreive excuse with ID id
+     * Retrieve excuse with ID id
      *
-     * @param id
+     * @param id Excuse id
      * @return Excuse
      */
     public Excuse getExcuse(int id) {
@@ -92,7 +92,7 @@ public class DatabaseHandler extends SQLiteAssetHelper {
 
     /**
      * Delete current excuse from database
-     * @param excuse
+     * @param excuse Excuse object
      */
     public void deleteExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
@@ -117,8 +117,8 @@ public class DatabaseHandler extends SQLiteAssetHelper {
     /**
      * Updates current excuse
      *
-     * @param excuse
-     * @return
+     * @param excuse Excuse object
+     * @return returnVariable Status of update
      */
     public int updateExcuse(Excuse excuse) {
         SQLiteDatabase db = getWritableDatabase();
