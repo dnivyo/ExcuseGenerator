@@ -45,7 +45,8 @@
         android:layout_height="match_parent"
         android:id="@+id/scrollView"
         android:layout_gravity="center_horizontal"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:background="#ffffffff">
 
 
         <LinearLayout
@@ -91,7 +92,6 @@
                 android:text="@string/information_h"
                 android:id="@+id/textView6"
                 android:textSize="21sp"
-                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:paddingBottom="12dp"
                 android:textStyle="bold"
