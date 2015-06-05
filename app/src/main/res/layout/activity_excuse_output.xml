@@ -63,7 +63,7 @@
                 android:layout_width="412dp"
                 android:layout_height="wrap_content"
                 android:text="SHARE"
-                android:onClick="shareIt"
+                android:onClick="share"
                 android:id="@+id/button2"
                 android:layout_gravity="center"
                 android:background="#007aff"

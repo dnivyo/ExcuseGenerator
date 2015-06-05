@@ -10,9 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.Random;
-
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.DatabaseHandler;
 import nz.aut.dms.excusegenerator.nz.aut.dms.excusegenerator.entities.Excuse;
 
@@ -47,7 +44,7 @@ public class ExcuseOutputActivity extends Activity {
 
     }
 
-    public void shareIt(View view) {
+    public void share(View view) {
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.button);
         mp.start();
         Intent sharingIntent = new Intent();
@@ -55,7 +52,6 @@ public class ExcuseOutputActivity extends Activity {
         sharingIntent.setType("text/plain");
         EditText editText = (EditText) findViewById(R.id.outPutText);
         String shareMessage = editText.getText().toString();
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
         //mp.start();
